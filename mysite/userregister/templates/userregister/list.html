@@ -1,0 +1,51 @@
+{% extends "userregister/base.html" %}
+
+{% block title %}Список пользователей{% endblock %}
+
+{% block content %}
+    {% if user_list %}
+        <p>Найдено {{ user_list |length }}</p>
+        <div class="table-responsive">
+            
+        <table class="table table-condensed table-hover">
+            <thead>
+                <tr>
+                    <td>№</td>
+                    <td>ФИО</td>
+                    <td>Дата рождения</td>
+                    <td>Возраст</td>
+                    <td>Профессия</td>
+                    <td>Дата регистрации</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in user_list %}
+                <tr>
+                    <td>
+                        {{ user.id }}
+                    </td>
+                    <td>
+                        {{ user.name }}
+                    </td>
+                    <td>
+                        {{ user.borndate }}
+                    </td>
+                    <td>
+                        {{ user.age }}
+                    </td>
+                    <td>
+                        {{ user.job }}
+                    </td>
+                    <td>
+                        {{ user.created_at }}
+                    </td>
+
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+    {% else %}
+        <p>Вы еще не добавили ни одного пользователя.</p>
+    {% endif %}
+{% endblock %}
